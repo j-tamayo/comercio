@@ -2,6 +2,8 @@
 /**
  * PostgreSQL layer for DBO.
  *
+ * PHP 5
+ *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -127,7 +129,7 @@ class Postgres extends DboSource {
 				$this->setEncoding($config['encoding']);
 			}
 			if (!empty($config['schema'])) {
-				$this->_execute('SET search_path TO "' . $config['schema'] . '"');
+				$this->_execute('SET search_path TO ' . $config['schema']);
 			}
 			if (!empty($config['settings'])) {
 				foreach ($config['settings'] as $key => $value) {
@@ -323,8 +325,7 @@ class Postgres extends DboSource {
 		$fullTable = $this->fullTableName($table);
 
 		$sequence = $this->value($this->getSequence($tableName, $column));
-		$column = $this->name($column);
-		$this->execute("SELECT setval($sequence, (SELECT MAX($column) FROM $fullTable))");
+		$this->execute("SELECT setval($sequence, (SELECT MAX(id) FROM $fullTable))");
 		return true;
 	}
 
@@ -528,17 +529,14 @@ class Postgres extends DboSource {
 							}
 							break;
 						case 'change':
-							$schema = $this->describe($curTable);
 							foreach ($column as $field => $col) {
 								if (!isset($col['name'])) {
 									$col['name'] = $field;
 								}
-								$original = $schema[$field];
 								$fieldName = $this->name($field);
 
 								$default = isset($col['default']) ? $col['default'] : null;
 								$nullable = isset($col['null']) ? $col['null'] : null;
-								$boolToInt = $original['type'] == 'boolean' && $col['type'] == 'integer';
 								unset($col['default'], $col['null']);
 								if ($field !== $col['name']) {
 									$newName = $this->name($col['name']);
@@ -546,23 +544,14 @@ class Postgres extends DboSource {
 									$out .= 'ALTER TABLE ' . $this->fullTableName($curTable) . " \n";
 									$fieldName = $newName;
 								}
-
-								if ($boolToInt) {
-									$colList[] = 'ALTER COLUMN ' . $fieldName . '  SET DEFAULT NULL';
-									$colList[] = 'ALTER COLUMN ' . $fieldName . ' TYPE ' . str_replace(array($fieldName, 'NOT NULL'), '', $this->buildColumn($col)) . ' USING CASE WHEN TRUE THEN 1 ELSE 0 END';
-								} else {
-									$colList[] = 'ALTER COLUMN ' . $fieldName . ' TYPE ' . str_replace(array($fieldName, 'NOT NULL'), '', $this->buildColumn($col));
-								}
-
+								$colList[] = 'ALTER COLUMN ' . $fieldName . ' TYPE ' . str_replace(array($fieldName, 'NOT NULL'), '', $this->buildColumn($col));
 								if (isset($nullable)) {
 									$nullable = ($nullable) ? 'DROP NOT NULL' : 'SET NOT NULL';
 									$colList[] = 'ALTER COLUMN ' . $fieldName . '  ' . $nullable;
 								}
 
 								if (isset($default)) {
-									if (!$boolToInt) {
-										$colList[] = 'ALTER COLUMN ' . $fieldName . '  SET DEFAULT ' . $this->value($default, $col['type']);
-									}
+									$colList[] = 'ALTER COLUMN ' . $fieldName . '  SET DEFAULT ' . $this->value($default, $col['type']);
 								} else {
 									$colList[] = 'ALTER COLUMN ' . $fieldName . '  DROP DEFAULT';
 								}
@@ -669,6 +658,7 @@ class Postgres extends DboSource {
 		}
 
 		$col = str_replace(')', '', $real);
+		$limit = null;
 
 		if (strpos($col, '(') !== false) {
 			list($col, $limit) = explode('(', $col);
@@ -859,7 +849,6 @@ class Postgres extends DboSource {
 		);
 
 		$out = str_replace('integer serial', 'serial', $out);
-		$out = str_replace('bigint serial', 'bigserial', $out);
 		if (strpos($out, 'timestamp DEFAULT')) {
 			if (isset($column['null']) && $column['null']) {
 				$out = str_replace('DEFAULT NULL', '', $out);

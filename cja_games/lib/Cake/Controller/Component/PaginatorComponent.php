@@ -2,6 +2,8 @@
 /**
  * Paginator Component
  *
+ * PHP 5
+ *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -212,6 +214,9 @@ class PaginatorComponent extends Component {
 		$pageCount = intval(ceil($count / $limit));
 		$requestedPage = $page;
 		$page = max(min($page, $pageCount), 1);
+		if ($requestedPage > $page) {
+			throw new NotFoundException();
+		}
 
 		$paging = array(
 			'page' => $page,
@@ -233,10 +238,6 @@ class PaginatorComponent extends Component {
 			(array)$this->Controller->request['paging'],
 			array($object->alias => $paging)
 		);
-
-		if ($requestedPage > $page) {
-			throw new NotFoundException();
-		}
 
 		if (
 			!in_array('Paginator', $this->Controller->helpers) &&

@@ -2,6 +2,8 @@
 /**
  * built-in Server Shell
  *
+ * PHP 5
+ *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -26,15 +28,11 @@ class ServerShell extends AppShell {
 
 /**
  * Default ServerHost
- *
- * @var string
  */
 	const DEFAULT_HOST = 'localhost';
 
 /**
  * Default ListenPort
- *
- * @var integer
  */
 	const DEFAULT_PORT = 80;
 

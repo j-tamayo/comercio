@@ -1,9 +1,10 @@
 <?php
-require_once dirname(__DIR__) . '/Vendor/autoload.php';
 /**
  * This is core configuration file.
  *
  * Use it to configure core behavior of Cake.
+ *
+ * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -44,7 +45,7 @@ require_once dirname(__DIR__) . '/Vendor/autoload.php';
  * - `handler` - callback - The callback to handle errors. You can set this to any callable type,
  *   including anonymous functions.
  *   Make sure you add App::uses('MyHandler', 'Error'); when using a custom handler class
- * - `level` - integer - The level of errors you are interested in capturing.
+ * - `level` - int - The level of errors you are interested in capturing.
  * - `trace` - boolean - Include stack traces for errors in log files.
  *
  * @see ErrorHandler for more information on error handling and configuration.
@@ -96,8 +97,8 @@ require_once dirname(__DIR__) . '/Vendor/autoload.php';
  * /app/webroot/.htaccess
  *
  * And uncomment the App.baseUrl below. But keep in mind
- * that plugin assets such as images, CSS and JavaScript files
- * will not work without URL rewriting!
+ * that plugin assets such as images, CSS and Javascript files
+ * will not work without url rewriting!
  * To work around this issue you should either symlink or copy
  * the plugin assets into you app's webroot directory. This is
  * recommended even when you are using mod_rewrite. Handling static
@@ -105,7 +106,7 @@ require_once dirname(__DIR__) . '/Vendor/autoload.php';
  * included primarily as a development convenience - and
  * thus not recommended for production applications.
  */
-	//Configure::write('App.baseUrl', env('SCRIPT_NAME'));
+  //Configure::write('App.baseUrl', env('SCRIPT_NAME'));
 
 /**
  * To configure CakePHP to use a particular domain URL
@@ -150,7 +151,7 @@ require_once dirname(__DIR__) . '/Vendor/autoload.php';
  *	`manager_index()` and `/manager/controller/index`
  *
  */
-	Configure::write('Routing.prefixes', array('admin'));
+	//Configure::write('Routing.prefixes', array('admin'));
 
 /**
  * Turn off all caching application-wide.
@@ -223,12 +224,12 @@ require_once dirname(__DIR__) . '/Vendor/autoload.php';
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'DYhG93b0qyJfIxfs2huVoUubWwvniR2G0FgaC9mi');
+	Configure::write('Security.salt', 'adrian_suarez_proyecto_ucv_comercio');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-	Configure::write('Security.cipherSeed', '76859309617453542496749683645');
+	Configure::write('Security.cipherSeed', '76859309657453542496749683625');
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
@@ -253,7 +254,7 @@ require_once dirname(__DIR__) . '/Vendor/autoload.php';
  * Plug in your own custom JavaScript compressor by dropping a script in your webroot to handle the
  * output, and setting the config below to the name of the script.
  *
- * To use, prefix your JavaScript link URLs with '/cjs/' instead of '/js/' or use JsHelper::link().
+ * To use, prefix your JavaScript link URLs with '/cjs/' instead of '/js/' or use JavaScriptHelper::link().
  */
 	//Configure::write('Asset.filter.js', 'custom_javascript_output_filter.php');
 
@@ -269,14 +270,6 @@ require_once dirname(__DIR__) . '/Vendor/autoload.php';
  * any date & time related errors.
  */
 	//date_default_timezone_set('UTC');
-
-/**
- * `Config.timezone` is available in which you can set users' timezone string.
- * If a method of CakeTime class is called with $timezone parameter as null and `Config.timezone` is set,
- * then the value of `Config.timezone` will be used. This feature allows you to set users' timezone just
- * once instead of passing it each time in function calls.
- */
-	//Configure::write('Config.timezone', 'Europe/Paris')
 
 /**
  *

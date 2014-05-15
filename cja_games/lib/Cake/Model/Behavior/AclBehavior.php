@@ -4,6 +4,8 @@
  *
  * Enables objects to easily tie into an ACL system
  *
+ * PHP 5
+ *
  * CakePHP :  Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *

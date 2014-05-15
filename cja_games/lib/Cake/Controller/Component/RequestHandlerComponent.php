@@ -159,7 +159,7 @@ class RequestHandlerComponent extends Component {
 			return;
 		}
 
-		$accepts = $this->response->mapType($accept);
+		$accepts = $this->response->mapType($this->request->parseAccept());
 		$preferedTypes = current($accepts);
 		if (array_intersect($preferedTypes, array('html', 'xhtml'))) {
 			return null;
@@ -518,9 +518,6 @@ class RequestHandlerComponent extends Component {
 		}
 
 		list($contentType) = explode(';', env('CONTENT_TYPE'));
-		if ($contentType === '') {
-			list($contentType) = explode(';', CakeRequest::header('CONTENT_TYPE'));
-		}
 		if (!$type) {
 			return $this->mapType($contentType);
 		}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/wamp/www/cakephp/app/View/Products/index.ctp</file>
+            <file>file:/C:/wamp/www/cakephp/app/View/Users/index.ctp</file>
+            <file>file:/C:/wamp/www/cakephp/app/Controller/AdminUsersController.php</file>
+            <file>file:/C:/wamp/www/cakephp/app/View/Principal/index.php</file>
+            <file>file:/C:/wamp/www/cakephp/app/View/Products/add.ctp</file>
+            <file>file:/C:/wamp/www/cakephp/app/Controller/AppController.php</file>
+            <file>file:/C:/wamp/www/cakephp/app/Model/AppModel.php</file>
+            <file>file:/C:/wamp/www/cakephp/app/Model/AdminUser.php</file>
+            <file>file:/C:/wamp/www/cakephp/app/Config/database.php</file>
+            <file>file:/C:/wamp/www/cakephp/app/Controller/PrincipalController.php</file>
+            <file>file:/C:/wamp/www/cakephp/app/Config/bootstrap.php</file>
+            <file>file:/C:/wamp/www/cakephp/app/Controller/UsersController.php</file>
+            <file>file:/C:/wamp/www/cakephp/app/Config/core.php</file>
+            <file>file:/C:/wamp/www/cakephp/app/Config/routes.php</file>
+            <file>file:/C:/wamp/www/cakephp/app/webroot/css/cake.generic.css</file>
+        </group>
+    </open-files>
+</project-private>

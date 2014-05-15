@@ -1,6 +1,8 @@
 <?php
 /**
- * CakePHP Email
+ * Cake E-Mail
+ *
+ * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -22,9 +24,10 @@ App::uses('AbstractTransport', 'Network/Email');
 App::uses('File', 'Utility');
 App::uses('String', 'Utility');
 App::uses('View', 'View');
+App::import('I18n', 'Multibyte');
 
 /**
- * CakePHP email class.
+ * Cake e-mail class.
  *
  * This class is used for handling Internet Message Format based
  * based on the standard outlined in http://www.rfc-editor.org/rfc/rfc2822.txt
@@ -36,35 +39,35 @@ class CakeEmail {
 /**
  * Default X-Mailer
  *
- * @var string
+ * @constant EMAIL_CLIENT
  */
 	const EMAIL_CLIENT = 'CakePHP Email';
 
 /**
  * Line length - no should more - RFC 2822 - 2.1.1
  *
- * @var integer
+ * @constant LINE_LENGTH_SHOULD
  */
 	const LINE_LENGTH_SHOULD = 78;
 
 /**
  * Line length - no must more - RFC 2822 - 2.1.1
  *
- * @var integer
+ * @constant LINE_LENGTH_MUST
  */
 	const LINE_LENGTH_MUST = 998;
 
 /**
  * Type of message - HTML
  *
- * @var string
+ * @constant MESSAGE_HTML
  */
 	const MESSAGE_HTML = 'html';
 
 /**
  * Type of message - TEXT
  *
- * @var string
+ * @constant MESSAGE_TEXT
  */
 	const MESSAGE_TEXT = 'text';
 
@@ -322,13 +325,6 @@ class CakeEmail {
  * @var string
  */
 	protected $_emailPattern = null;
-
-/**
- * The class name used for email configuration.
- *
- * @var string
- */
-	protected $_configClass = 'EmailConfig';
 
 /**
  * Constructor
@@ -984,7 +980,7 @@ class CakeEmail {
  *		'contentDisposition' => false
  * ));
  * }}}
- *
+ * 
  * Attach a file from string and specify additional properties:
  *
  * {{{
@@ -1184,10 +1180,10 @@ class CakeEmail {
  */
 	protected function _applyConfig($config) {
 		if (is_string($config)) {
-			if (!class_exists($this->_configClass) && !config('email')) {
+			if (!class_exists('EmailConfig') && !config('email')) {
 				throw new ConfigureException(__d('cake_dev', '%s not found.', APP . 'Config' . DS . 'email.php'));
 			}
-			$configs = new $this->_configClass();
+			$configs = new EmailConfig();
 			if (!isset($configs->{$config})) {
 				throw new ConfigureException(__d('cake_dev', 'Unknown email configuration "%s".', $config));
 			}
@@ -1308,13 +1304,9 @@ class CakeEmail {
  * Wrap the message to follow the RFC 2822 - 2.1.1
  *
  * @param string $message Message to wrap
- * @param integer $wrapLength The line length
  * @return array Wrapped message
  */
 	protected function _wrap($message, $wrapLength = CakeEmail::LINE_LENGTH_MUST) {
-		if (strlen($message) === 0) {
-			return array('');
-		}
 		$message = str_replace(array("\r\n", "\r"), "\n", $message);
 		$lines = explode("\n", $message);
 		$formatted = array();
@@ -1642,11 +1634,8 @@ class CakeEmail {
 			$layout = false;
 		}
 
-		if ($View->get('content') === null) {
-			$View->set('content', $content);
-		}
-
 		foreach ($types as $type) {
+			$View->set('content', $content);
 			$View->hasRendered = false;
 			$View->viewPath = $View->layoutPath = 'Emails' . DS . $type;
 

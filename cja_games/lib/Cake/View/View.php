@@ -2,6 +2,8 @@
 /**
  * Methods for displaying presentation data in the view.
  *
+ * PHP 5
+ *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -134,7 +136,7 @@ class View extends Object {
 	public $layoutPath = null;
 
 /**
- * Turns on or off CakePHP's conventional mode of applying layout files. On by default.
+ * Turns on or off Cake's conventional mode of applying layout files. On by default.
  * Setting to off means that layouts will not be automatically applied to rendered views.
  *
  * @var boolean
@@ -142,7 +144,7 @@ class View extends Object {
 	public $autoLayout = true;
 
 /**
- * File extension. Defaults to CakePHP's template ".ctp".
+ * File extension. Defaults to Cake's template ".ctp".
  *
  * @var string
  */
@@ -299,22 +301,16 @@ class View extends Object {
 
 /**
  * Constant for view file type 'view'
- *
- * @var string
  */
 	const TYPE_VIEW = 'view';
 
 /**
  * Constant for view file type 'element'
- *
- * @var string
  */
 	const TYPE_ELEMENT = 'element';
 
 /**
  * Constant for view file type 'layout'
- *
- * @var string
  */
 	const TYPE_LAYOUT = 'layout';
 
@@ -451,12 +447,12 @@ class View extends Object {
  *
  * @param string $view Name of view file to use
  * @param string $layout Layout to use.
- * @return string|null Rendered content or null if content already rendered and returned earlier.
+ * @return string Rendered Element
  * @throws CakeException If there is an error in the view.
  */
 	public function render($view = null, $layout = null) {
 		if ($this->hasRendered) {
-			return;
+			return true;
 		}
 		$this->Blocks->set('content', '');
 
@@ -543,7 +539,7 @@ class View extends Object {
 	public function renderCache($filename, $timeStart) {
 		$response = $this->response;
 		ob_start();
-		include $filename;
+		include ($filename);
 
 		$type = $response->mapType($response->type());
 		if (Configure::read('debug') > 0 && $type === 'html') {
@@ -1100,7 +1096,7 @@ class View extends Object {
  * Return all possible paths to find view files in order
  *
  * @param string $plugin Optional plugin name to scan for view files.
- * @param boolean $cached Set to false to force a refresh of view paths. Default true.
+ * @param boolean $cached Set to true to force a refresh of view paths.
  * @return array paths
  */
 	protected function _paths($plugin = null, $cached = true) {

@@ -130,7 +130,7 @@ class Hash {
 			if ($conditions) {
 				$filter = array();
 				foreach ($next as $item) {
-					if (is_array($item) && self::_matches($item, $conditions)) {
+					if (self::_matches($item, $conditions)) {
 						$filter[] = $item;
 					}
 				}
@@ -324,7 +324,6 @@ class Hash {
  * @param string $groupPath A dot-separated string.
  * @return array Combined array
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::combine
- * @throws CakeException CakeException When keys and values count is unequal.
  */
 	public static function combine(array $data, $keyPath, $valuePath = null, $groupPath = null) {
 		if (empty($data)) {
@@ -347,15 +346,10 @@ class Hash {
 		} elseif (!empty($valuePath)) {
 			$vals = self::extract($data, $valuePath);
 		}
-		if (empty($vals)) {
-			$vals = array_fill(0, count($keys), null);
-		}
 
-		if (count($keys) !== count($vals)) {
-			throw new CakeException(__d(
-				'cake_dev',
-				'Hash::combine() needs an equal number of keys + values.'
-			));
+		$count = count($keys);
+		for ($i = 0; $i < $count; $i++) {
+			$vals[$i] = isset($vals[$i]) ? $vals[$i] : null;
 		}
 
 		if ($groupPath !== null) {
@@ -448,14 +442,14 @@ class Hash {
 			$val = $needle[$key];
 			unset($needle[$key]);
 
-			if (array_key_exists($key, $data) && is_array($val)) {
+			if (isset($data[$key]) && is_array($val)) {
 				$next = $data[$key];
 				unset($data[$key]);
 
 				if (!empty($val)) {
 					$stack[] = array($val, $next);
 				}
-			} elseif (!array_key_exists($key, $data) || $data[$key] != $val) {
+			} elseif (!isset($data[$key]) || $data[$key] != $val) {
 				return false;
 			}
 
@@ -559,7 +553,7 @@ class Hash {
 	}
 
 /**
- * Expands a flat array to a nested array.
+ * Expand/unflattens an string to an array
  *
  * For example, unflattens an array that was collapsed with `Hash::flatten()`
  * into a multi-dimensional array. So, `array('0.Foo.Bar' => 'Far')` becomes
@@ -632,7 +626,9 @@ class Hash {
 		if (empty($data)) {
 			return false;
 		}
-		return $data === array_filter($data, 'is_numeric');
+		$values = array_values($data);
+		$str = implode('', $values);
+		return (bool)ctype_digit($str);
 	}
 
 /**

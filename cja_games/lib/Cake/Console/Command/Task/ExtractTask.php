@@ -2,6 +2,8 @@
 /**
  * Language string extractor
  *
+ * PHP 5
+ *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -501,7 +503,6 @@ class ExtractTask extends AppShell {
  * @param array $rules the set of validation rules for the field
  * @param string $file the file name where this validation rule was found
  * @param string $domain default domain to bind the validations to
- * @param string $category the translation category
  * @return void
  */
 	protected function _processValidationRules($field, $rules, $file, $domain, $category = 'LC_MESSAGES') {
@@ -526,7 +527,6 @@ class ExtractTask extends AppShell {
 				$msgid = $rule;
 			}
 			if ($msgid) {
-				$msgid = $this->_formatString(sprintf("'%s'", $msgid));
 				$details = array(
 					'file' => $file,
 					'line' => 'validation for field ' . $field

@@ -2,6 +2,8 @@
 /**
  * CakeTestCase file
  *
+ * PHP 5
+ *
  * CakePHP(tm) Tests <http://book.cakephp.org/2.0/en/development/testing.html>
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -531,7 +533,6 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  * @param mixed $result
  * @param mixed $expected
  * @param string $message the text to display if the assertion is not correct
- * @deprecated This is a compatiblity wrapper for 1.x. It will be removed in 3.0
  * @return void
  */
 	protected static function assertEqual($result, $expected, $message = '') {
@@ -544,7 +545,6 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  * @param mixed $result
  * @param mixed $expected
  * @param string $message the text to display if the assertion is not correct
- * @deprecated This is a compatiblity wrapper for 1.x. It will be removed in 3.0
  * @return void
  */
 	protected static function assertNotEqual($result, $expected, $message = '') {
@@ -557,7 +557,6 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  * @param mixed $pattern a regular expression
  * @param string $string the text to be matched
  * @param string $message the text to display if the assertion is not correct
- * @deprecated This is a compatiblity wrapper for 1.x. It will be removed in 3.0
  * @return void
  */
 	protected static function assertPattern($pattern, $string, $message = '') {
@@ -570,7 +569,6 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  * @param mixed $actual
  * @param mixed $expected
  * @param string $message the text to display if the assertion is not correct
- * @deprecated This is a compatiblity wrapper for 1.x. It will be removed in 3.0
  * @return void
  */
 	protected static function assertIdentical($actual, $expected, $message = '') {
@@ -583,7 +581,6 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  * @param mixed $actual
  * @param mixed $expected
  * @param string $message the text to display if the assertion is not correct
- * @deprecated This is a compatiblity wrapper for 1.x. It will be removed in 3.0
  * @return void
  */
 	protected static function assertNotIdentical($actual, $expected, $message = '') {
@@ -596,7 +593,6 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  * @param mixed $pattern a regular expression
  * @param string $string the text to be matched
  * @param string $message the text to display if the assertion is not correct
- * @deprecated This is a compatiblity wrapper for 1.x. It will be removed in 3.0
  * @return void
  */
 	protected static function assertNoPattern($pattern, $string, $message = '') {
@@ -605,9 +601,6 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
 
 /**
  * assert no errors
- *
- * @deprecated This is a compatiblity wrapper for 1.x. It will be removed in 3.0
- * @return void
  */
 	protected function assertNoErrors() {
 	}
@@ -617,7 +610,6 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  *
  * @param mixed $expected the name of the Exception or error
  * @param string $message the text to display if the assertion is not correct
- * @deprecated This is a compatiblity wrapper for 1.x. It will be removed in 3.0
  * @return void
  */
 	protected function expectError($expected = false, $message = '') {
@@ -632,7 +624,6 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  *
  * @param mixed $expected the name of the Exception
  * @param string $message the text to display if the assertion is not correct
- * @deprecated This is a compatiblity wrapper for 1.x. It will be removed in 3.0
  * @return void
  */
 	protected function expectException($name = 'Exception', $message = '') {
@@ -645,7 +636,6 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  * @param mixed $first
  * @param mixed $second
  * @param string $message the text to display if the assertion is not correct
- * @deprecated This is a compatiblity wrapper for 1.x. It will be removed in 3.0
  * @return void
  */
 	protected static function assertReference(&$first, &$second, $message = '') {
@@ -658,7 +648,6 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  * @param string $object
  * @param string $type
  * @param string $message
- * @deprecated This is a compatiblity wrapper for 1.x. It will be removed in 3.0
  * @return void
  */
 	protected static function assertIsA($object, $type, $message = '') {

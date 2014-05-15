@@ -2,6 +2,8 @@
 /**
  * Base class for Shells
  *
+ * PHP 5
+ *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -33,22 +35,16 @@ class Shell extends Object {
 
 /**
  * Output constant making verbose shells.
- *
- * @var integer
  */
 	const VERBOSE = 2;
 
 /**
  * Output constant for making normal shells.
- *
- * @var integer
  */
 	const NORMAL = 1;
 
 /**
  * Output constants for making quiet shells.
- *
- * @var integer
  */
 	const QUIET = 0;
 
@@ -205,7 +201,6 @@ class Shell extends Object {
  */
 	public function initialize() {
 		$this->_loadModels();
-		$this->loadTasks();
 	}
 
 /**

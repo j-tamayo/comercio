@@ -1,5 +1,7 @@
 <?php
 /**
+ * PHP 5
+ *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -116,7 +118,7 @@ abstract class BaseAuthenticate {
 		}
 
 		$user = $result[$model];
-		if ($password !== null) {
+		if ($password) {
 			if (!$this->passwordHasher()->check($password, $user[$fields['password']])) {
 				return false;
 			}
