@@ -41,7 +41,7 @@ class TestServiceController extends AppController {
         $xml =  Xml::fromArray($message_text, array('format' => 'tags'));
 
         //($xml);die;
-
+        echo "hey";die;
     }
 
     public function getState(){
