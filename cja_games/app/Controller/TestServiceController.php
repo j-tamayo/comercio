@@ -34,7 +34,7 @@ class TestServiceController extends AppController {
         //echo '<pre>';print_r($products);die; 
 
         foreach($products as $product){
-            $message_text['despacho']['productos'][] = $product['Product'];
+            $message_text['despacho']['productos'] = $product['Product'];
         }
 
        // echo '<pre>';print_r($message_text);die;
