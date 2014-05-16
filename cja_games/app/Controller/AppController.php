@@ -49,7 +49,8 @@ class AppController extends Controller {
 	function beforeFilter() {
 		 
 		//$this->Auth->autoRedirect = ; /* this allows us to run further checks on login() action.*/
-		$this->Auth->allow('register', 'index', 'view', 'edit','login','logout', 'dispatch', 'getState', 'payment'); 
+		//$this->Auth->allow('register', 'index', 'view', 'edit','login','logout'); 
+		$this->Auth->allow(); 
 		//$this->Auth->fields = array('username' => 'username', 'password' => 'password');
 		//$this->Auth->userScope = array('User.is_banned' => 0); /* admin can ban a user by updating `is_banned` field of users table to '1' */
 	}

@@ -107,11 +107,11 @@ class UsersController extends AppController {
 				if ($this->User->validates()) {	
 					$this->createU($this->request->data);
 					$this->User->save($this->request->data);
-					$this->__sendActivationEmail($this->User->getLastInsertID());
+					// SI HAY INTERNET Y SE CONFIGURO EMAIL, DESCOMENTAR LA SIGUIENTE LINEA PARA ENVIAR EL CORREO
+					//$this->__sendActivationEmail($this->User->getLastInsertID());
 					$this->Session->setFlash(__('El usuario A sido Registrado.Confirma Tu Cuenta Porfavor'));
 					return $this->redirect(array('action' => 'login'));
 				} else {
-					$this->deleteU($this->request->data["User"]['username']);
 					$this->Session->setFlash(__('El Usuario No A sido Guardado.Porfavor Intenta de Nuevo'));
 				}
 			}else{
@@ -130,22 +130,27 @@ class UsersController extends AppController {
 		if (!empty($usern["User"]['img_perfil']['tmp_name'])) {
 			// check file is uploaded
 			if (!is_uploaded_file($usern["User"]['img_perfil']['tmp_name'])) {
+				$this->request->data["User"]['img_perfil'] ="";
 				return FALSE;
 			}
-			$filename = WWW_ROOT .'img\Users/'.$usern["User"]['username'].'/perfil.'.pathinfo($usern["User"]['img_perfil']['name'], PATHINFO_EXTENSION);
-		
+			$filename = WWW_ROOT .'img\Users'.DS.$usern["User"]['username'].DS.'perfil.'.pathinfo($usern["User"]['img_perfil']['name'], PATHINFO_EXTENSION);
+			$fileN='Users/'.$usern["User"]['username'].'/perfil.'.pathinfo($usern["User"]['img_perfil']['name'], PATHINFO_EXTENSION);
 			if (!move_uploaded_file($usern["User"]['img_perfil']['tmp_name'], $filename)) {
+				$this->request->data["User"]['img_perfil'] ="";
 				return FALSE;
 			} else {
 				// save the file path relative from WWW_ROOT e.g. uploads/example_filename.jpg
-				$this->request->data["User"]['img_perfil'] =  $filename ;		
+				$this->request->data["User"]['img_perfil'] =  $fileN ;		
 			}
+		}else{
+			$this->request->data["User"]['img_perfil'] ="";
 		}	
+		
 		return 1;
 
 	}
 	function deleteU($usuario){
-		$dir = new Folder(WWW_ROOT . 'img/Users/'.$usuario);
+		$dir = new Folder(WWW_ROOT . 'img\Users'.DS.$usuario);
 		if($dir->delete())
 			return 1;
 		else
@@ -153,9 +158,9 @@ class UsersController extends AppController {
 
 	}
 	function editU($nameE,$nameN){
-		$folder1 = new Folder(WWW_ROOT . 'img/Users/'.$nameE);
-		$folder1->copy(WWW_ROOT . 'img/Users/'.$nameN);
-		$folder1 = new Folder(WWW_ROOT . 'img/Users/'.$nameE);
+		$folder1 = new Folder(WWW_ROOT . 'img\Users'.DS.$nameE);
+		$folder1->copy(WWW_ROOT . 'img\Users'.DS.$nameN);
+		$folder1 = new Folder(WWW_ROOT . 'img\Users'.DS.$nameE);
 		if ($folder1->delete()) return 1;
 		else return 0;
 	}
@@ -256,13 +261,14 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function delete($id = null,$name=null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->User->delete()) {
+			$this->deleteU($name);
 			$this->Session->setFlash(__('The user has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));

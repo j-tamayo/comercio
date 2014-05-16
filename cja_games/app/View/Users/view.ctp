@@ -62,6 +62,12 @@
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Cart'); ?></dt>
+		<dt><?php echo __('Img Perfil'); ?></dt>
+		<dd>
+			<?php echo $this->Html->image($user['User']['img_perfil'], array('id'=>'img'));?>
+			&nbsp;
+		</dd>
+
 		<dd>
 			<?php echo $this->Html->link($user['Cart']['id'], array('controller' => 'carts', 'action' => 'view', $user['Cart']['id'])); ?>
 			&nbsp;
@@ -72,7 +78,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id'],$user['User']['username']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Cities'), array('controller' => 'cities', 'action' => 'index')); ?> </li>

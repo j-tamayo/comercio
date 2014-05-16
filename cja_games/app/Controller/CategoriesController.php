@@ -78,7 +78,6 @@ class CategoriesController extends AppController {
 		$folder1 = new Folder(WWW_ROOT . 'img/Games_Categories/'.$nameE);
 		if ($folder1->delete()) return 1;
 		else return 0;
-
 	}
 
 /**
@@ -94,7 +93,8 @@ class CategoriesController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Category->save($this->request->data)) {
-				$this->editFile($name,$this->request->data['Category']['name']);
+				if($name!=$this->request->data['Category']['name'])
+					$this->editFile($name,$this->request->data['Category']['name']);
 				$this->Session->setFlash(__('The category has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {

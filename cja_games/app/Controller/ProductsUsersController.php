@@ -55,6 +55,8 @@ class ProductsUsersController extends AppController {
 				$this->Session->setFlash(__('The products user could not be saved. Please, try again.'));
 			}
 		}
+		$users = $this->ProductsUser->User->find('list');
+		$this->set(compact('users'));
 	}
 
 /**

@@ -19,7 +19,7 @@ class TestServiceController extends AppController {
    
     public function dispatch (){
         $this->loadModel('Product');
-       /*$http = new HttpSocket();
+              /*$http = new HttpSocket();
 $response = $http->post('http://192.168.1.113:8000/wseps/solicitud');
 echo '<pre>';print_r($response);die;*/
 

@@ -32,8 +32,6 @@ public $validate = array(
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),'unique' => array(
 				'rule' => array('isUnique'),
-		        'required'   => true,
-		        'allowEmpty' => false,
 		        // or: 'update'
 		        //'on'         => 'create',
 		        'message'    => 'Producto Registrado.Porfavor Coloca Otro Nombre de Producto')
@@ -116,6 +114,22 @@ public $validate = array(
  *
  * @var array
  */
+	public $hasMany = array(
+		'ProductsUser' => array(
+			'className' => 'ProductsUser',
+			'foreignKey' => 'product_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+	
 	public $hasAndBelongsToMany = array(
 		'Cart' => array(
 			'className' => 'Cart',

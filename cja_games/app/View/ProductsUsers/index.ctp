@@ -14,7 +14,7 @@
 	<tr>
 		<td><?php echo h($productsUser['ProductsUser']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($productsUser['Product']['name'], array('controller' => 'products', 'action' => 'view', $productsUser['Product']['id'])); ?>
+			<?php debug($productsUser);echo $this->Html->link($productsUser['Product']['name'], array('controller' => 'products', 'action' => 'view', $productsUser['Product']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $this->Html->link($productsUser['User']['name'], array('controller' => 'users', 'action' => 'view', $productsUser['User']['id'])); ?>

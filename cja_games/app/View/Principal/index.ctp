@@ -8,6 +8,5 @@
 echo 'hola ';
 echo ' sess ';
 print_r($this->Session->read());
-
 ?>
 
