@@ -8,7 +8,11 @@
 class PrincipalController extends AppController{
  	
 	public function index(){
-		$this->set('name', 'adr');
+	
+		/*if ($page=='principal'){
+			$this->set('Principal', 'layout');
+		}*/
+		$this->render('principal', 'layout1');
 	}
 }
 
