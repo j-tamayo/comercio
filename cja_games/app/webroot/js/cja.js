@@ -20,3 +20,8 @@ function cargar(evt){
     document.getElementById('vacio').style.visibility="visible";
          console.log(evt);
 	}
+
+  function price(evt,price){
+     document.getElementById('priceP').innerHTML='$'+evt.target.value*price;
+     document.getElementById('priceP1').innerHTML='$'+evt.target.value*price;
+  }

@@ -53,8 +53,11 @@ class ProductsUsersController extends AppController {
 		$p=$this->Product->read();
 
 		$this->set('producto',$p);
+		$this->set('valor',$p['Product']['price']);
 		if ($this->request->is('post')) {
 			$this->ProductsUser->create();
+			debug($this->request->data);
+			die();
 			if ($this->ProductsUser->save($this->request->data)) {
 				$this->Session->setFlash(__('The products user has been saved.'));
 				return $this->redirect(array('action' => 'index'));
