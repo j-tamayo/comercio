@@ -99,7 +99,7 @@
 		<footer>
 			<div class="row">
 				<div class="col-lg-12">
-					<p>Copyright &copy; Company 2014 - CJA-Games</p>
+					<p>Copyright &copy; Company 2014 - CJA Games</p>
 				</div>
 			</div>
 		</footer>

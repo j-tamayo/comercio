@@ -1,4 +1,4 @@
-	<?php echo $this-> element('categorias');?>
+<?php echo $this-> element('categorias');?>
 <div class="col-md-9" id="content">
 <div class="row carousel-holder">
 
@@ -66,5 +66,6 @@
 								;
 							} 
 					?>
-				</div>
-				</div>
+
+	</div>
+</div>
