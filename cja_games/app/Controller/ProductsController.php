@@ -19,9 +19,16 @@ class ProductsController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->Product->recursive = 0;
-		$this->set('products', $this->Paginator->paginate());
+	public function index($flag = true) {
+	
+		if (!$flag){
+			$this->Product->recursive = 0;
+			$this->set('products', $this->Paginator->paginate());
+		}else{
+			$this->set('products', $this->Paginator->paginate());
+			$this->render('user_view', 'layout1');
+		
+		}
 	}
 
 /**

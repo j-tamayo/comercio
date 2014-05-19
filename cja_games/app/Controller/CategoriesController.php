@@ -20,9 +20,15 @@ class CategoriesController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function index($flag = true) {
+	
+		if(!$flag){
 		$this->Category->recursive = 0;
 		$this->set('categories', $this->Paginator->paginate());
+		}else{
+		$this->set('categories', $this->Paginator->paginate());
+		$this->render('user_view', 'layout1');
+		}
 	}
 
 /**
@@ -38,6 +44,11 @@ class CategoriesController extends AppController {
 		}
 		$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
 		$this->set('category', $this->Category->find('first', $options));
+	}
+	
+	public function user_view($id = null) {
+		$this->render('user_view', 'layout1');
+	
 	}
 
 /**
