@@ -4414,11 +4414,7 @@ a.list-group-item.active > .badge,
   -webkit-transition: all .2s ease-in-out;
           transition: all .2s ease-in-out;
 }
- .thumb {
-      height: 800px;
-      border: 1px solid #000;
-      margin: 10px 5px 0 0;
-    }
+ 
 .thumbnail > img,
 .thumbnail a > img {
   display: block;

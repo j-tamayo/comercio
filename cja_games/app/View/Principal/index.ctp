@@ -47,7 +47,7 @@
 		                            echo '
 		                            </div>
 		                            <div class="ratings">
-		                                <p class="pull-right">15 reviews</p>
+		                                <p class="pull-right">100 reviews</p>
 		                                <p>
 		                                    <span class="glyphicon glyphicon-star"></span>
 		                                    <span class="glyphicon glyphicon-star"></span>
@@ -61,4 +61,5 @@
 								;
 							} 
 					?>
+				</div>
 				</div>
