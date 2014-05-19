@@ -42,6 +42,7 @@ class UsersController extends AppController {
 
 
  	 public function login() {
+ 	 	$this->layout = 'layout1';
         if ($this->request->is('Post')) {
             /* login and redirect to url set in app controller */
 
@@ -87,7 +88,40 @@ class UsersController extends AppController {
  * @return void
  */
  
-	
+	public function register() {
+		$this->layout = 'layout1';
+		if ($this->request->is('post')) {
+			$this->User->create();
+		
+		if (empty($this->request->data['User']['activate'])) {
+			$this->request->data['User']['activate'] = FALSE;
+		}
+		if (empty($this->request->data['User']['register_date'])) {
+			$this->request->data['User']['register_date'] = NULL;
+		}
+
+		if($this->request->data['User']['password']==$this->request->data['User']['confirm_password']){
+
+				
+				$this->User->set($this->request->data);
+				if ($this->User->validates()) {	
+					$this->createU($this->request->data);
+					$this->User->save($this->request->data);
+					// SI HAY INTERNET Y SE CONFIGURO EMAIL, DESCOMENTAR LA SIGUIENTE LINEA PARA ENVIAR EL CORREO
+					//$this->__sendActivationEmail($this->User->getLastInsertID());
+					$this->Session->setFlash(__('El usuario A sido Registrado.Confirma Tu Cuenta Porfavor'));
+					return $this->redirect(array('action' => 'login'));
+				} else {
+					$this->Session->setFlash(__('El Usuario No A sido Guardado.Porfavor Intenta de Nuevo'));
+				}
+			}else{
+				$this->Session->setFlash(__('Confirma Bien tu Contraseña Porfavor'));
+
+			}
+		}
+		$cities = $this->User->City->find('list');
+		$this->set(compact('cities'));
+	}
 
 	public function add() {
 		if ($this->request->is('post')) {

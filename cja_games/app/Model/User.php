@@ -47,7 +47,7 @@ public $validate = array(
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'apellido' => array(
+		'lastname' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
