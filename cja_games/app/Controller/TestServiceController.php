@@ -135,6 +135,8 @@ echo '<pre>';print_r($response);die;*/
             $xml_array['pago']['solicitudPago']['datosmetodo_pago']['nroTDC'] = 1087653898210076;
             $xml_array['pago']['solicitudPago']['datosmetodo_pago']['cvcTDC'] = 653;
             $xml_array['pago']['solicitudPago']['datosmetodo_pago']['vencimientoTDC'] = '05/2018';
+			
+			echo '<pre>';print_r($xml->asXML());
         
         }
     }
