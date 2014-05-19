@@ -5,7 +5,7 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
-		echo $this->Form->input('apellido');
+		echo $this->Form->input('lastname');
 		echo $this->Form->input('sexo');
 		echo $this->Form->input('email');
 		echo $this->Form->input('username');

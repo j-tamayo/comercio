@@ -11,9 +11,9 @@
 			<?php echo h($user['User']['name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Apellido'); ?></dt>
+		<dt><?php echo __('Lastname'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['apellido']); ?>
+			<?php echo h($user['User']['lastname']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Sexo'); ?></dt>

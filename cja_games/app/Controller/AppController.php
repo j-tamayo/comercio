@@ -34,6 +34,7 @@ App::uses('Folder', 'Utility');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
 	public $components = array('DebugKit.Toolbar',
 		'Session', 
 		'Auth' => array(
@@ -47,6 +48,12 @@ class AppController extends Controller {
 	public $layout = 'layout';
 
 	function beforeFilter() {
+
+		Controller::loadModel('Category');
+		$options = array('conditions' => array('Product.'));
+		$categorias=$this->Category->find('all',array('order' => array('Category.name ASC')));
+		$this->set('categorias',$categorias);
+		
 		 
 		//$this->Auth->autoRedirect = ; /* this allows us to run further checks on login() action.*/
 		//$this->Auth->allow('register', 'index', 'view', 'edit','login','logout'); 

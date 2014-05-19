@@ -4,7 +4,7 @@
 		<legend><?php echo __('Add User'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
-		echo $this->Form->input('apellido');
+		echo $this->Form->input('lastname');
 		echo $this->Form->input('sexo',array(
    			 'options' => array('Hombre','Mujer'),
    			 'empty' => 'Elige'

@@ -4,7 +4,7 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('apellido'); ?></th>
+			<th><?php echo $this->Paginator->sort('lastname'); ?></th>
 			<th><?php echo $this->Paginator->sort('sexo'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('username'); ?></th>
@@ -21,7 +21,7 @@
 	<tr>
 		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['name']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['apellido']); ?>&nbsp;</td>
+		<td><?php echo h($user['User']['lastname']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['sexo']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>

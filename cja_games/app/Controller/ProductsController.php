@@ -49,9 +49,9 @@ class ProductsController extends AppController {
 			$this->Product->create();
 			$this->Product->set($this->request->data);
 			if ($this->Product->validates()){
-				$this->createP($this->request->data);
+				$v=$this->createP($this->request->data);
 				$this->Product->save($this->request->data);
-				$this->Session->setFlash(__('The product has been saved.'));
+				$this->Session->setFlash(__('The product has been saved.'.$v));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('El Producto no se pudo guardar.Porfavor Intenta De nuevo'));
@@ -89,12 +89,16 @@ function createP($data){
 			}
 		}else{
 			$this->request->data["Product"]['image'] ="";
+			return FALSE;
 		}	
 		
-		return 1;
+		return true;
 }
-	function deleteP($categoria,$Producto){
-		$dir = new Folder(WWW_ROOT . 'img/Games_Categories/'.$categoria.'/'.$Producto);
+	function deleteP($cate,$Produ){
+		$dir = new Folder(WWW_ROOT . 'img/Games_Categories/'.$cate.'/'.$Produ);
+		debug($dir);
+		debug($cate);
+		debug($Produ);
 		if($dir->delete())
 			return 1;
 		else
@@ -192,8 +196,8 @@ function createP($data){
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Product->delete()) {
-			$this->deleteP($ca['Category']['name'],$p);
-			$this->Session->setFlash(__('The product has been deleted.'));
+			$v=$this->deleteP($ca['Category']['name'],$p);
+			$this->Session->setFlash(__('The product has been deleted.'.$v));
 		} else {
 			$this->Session->setFlash(__('The product could not be deleted. Please, try again.'));
 		}
