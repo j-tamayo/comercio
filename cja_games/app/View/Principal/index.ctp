@@ -44,8 +44,13 @@
 		                                <h4><a href="#">'.$productos[$i]['Product']['name'].'</a>
 		                                </h4>
 		                                <p>'.$productos[$i]['Product']['description'].'</p>';
+									echo '
+		                            </div>';
+		                             if($this->Session->check('Auth.User')){
+									  echo $this->Html->link('Buy', array('controller' => 'ProductsUsers', 'action' => 'buy',$productos[$i]['Product']['id']));
+									  } 
+		                            
 		                            echo '
-		                            </div>
 		                            <div class="ratings">
 		                                <p class="pull-right">100 reviews</p>
 		                                <p>

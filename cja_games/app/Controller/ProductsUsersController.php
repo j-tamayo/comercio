@@ -45,6 +45,25 @@ class ProductsUsersController extends AppController {
  *
  * @return void
  */
+
+	public function buy($id = null) {
+		$this->layout = 'layout1';
+		Controller::loadModel('Product');
+		$this->Product->id=$id;
+		$p=$this->Product->read();
+
+		$this->set('producto',$p);
+		if ($this->request->is('post')) {
+			$this->ProductsUser->create();
+			if ($this->ProductsUser->save($this->request->data)) {
+				$this->Session->setFlash(__('The products user has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The products user could not be saved. Please, try again.'));
+			}
+		}
+	}
+
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->ProductsUser->create();

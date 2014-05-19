@@ -13,7 +13,7 @@
 		echo $this->Form->input('username');
 		echo $this->Form->input('password');
 		echo $this->Form->input('confirm_password', array('type' => 'password'));
-		echo $this->Form->input('mailing_address');
+		echo $this->Form->input('mailing_address', array('type'=>'textarea', 'rows' => 10, 'cols' => 35));
 		echo $this->Form->input('city_id');
 	
 	echo $this->Form->input('img_perfil',array('type' => 'file','onchange'=>'cargar(event)')); ?>
