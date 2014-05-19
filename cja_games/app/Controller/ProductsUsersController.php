@@ -56,13 +56,16 @@ class ProductsUsersController extends AppController {
 		$this->set('valor',$p['Product']['price']);
 		if ($this->request->is('post')) {
 			$this->ProductsUser->create();
-			debug($this->request->data);
-			die();
-			if ($this->ProductsUser->save($this->request->data)) {
-				$this->Session->setFlash(__('The products user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+			$this->request->data['ProductsUser']['product_id']=$id;
+			$this->request->data['ProductsUser']['user_id']=$this->Session->read('Auth.User.id');
+			$this->request->data['ProductsUser']['status']=$id;
+			$this->request->data['ProductsUser']['date']=null;
+			if ($this->ProductsUser->validates()){
+				$this->ProductsUser->save($this->request->data);
+				$this->Session->setFlash(__('The buy has finished with Success.'));
+				return $this->redirect(array('controller'=>'Principal','action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The products user could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The buy could not be finished. Please, try again.'));
 			}
 		}
 	}
