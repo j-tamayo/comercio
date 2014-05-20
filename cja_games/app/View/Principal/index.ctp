@@ -43,7 +43,7 @@
 		                        <div class="thumbnail">';
 		                           echo $this->Html->image($productos[$i]['Product']['image']);
 		                           echo'<div class="caption">
-		                                <h4 class="pull-right"> $'.$productos[$i]['Product']['price'].'</h4>
+		                                <h4 class="pull-right"> Bs '.$productos[$i]['Product']['price'].'</h4>
 		                                <h4><a href="#">'.$productos[$i]['Product']['name'].'</a>
 		                                </h4>
 		                                <p>'.$productos[$i]['Product']['description'].'</p>';

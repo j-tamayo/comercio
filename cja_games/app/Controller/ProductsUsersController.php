@@ -62,10 +62,10 @@ class ProductsUsersController extends AppController {
 			$this->request->data['ProductsUser']['date']=null;
 			if ($this->ProductsUser->validates()){
 				$this->ProductsUser->save($this->request->data);
-				$this->Session->setFlash(__('The buy has finished with Success.'));
+				$this->Session->setFlash(__('La compra se ha realizado con exito.'));
 				return $this->redirect(array('controller'=>'Principal','action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The buy could not be finished. Please, try again.'));
+				$this->Session->setFlash(__('La compra no pudo concretarse. Por favor, vuelva a intentarlo.'));
 			}
 		}
 	}
