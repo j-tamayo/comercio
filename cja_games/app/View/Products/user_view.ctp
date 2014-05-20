@@ -1,3 +1,4 @@
+<?php echo $this-> element('categorias');?>
 <div class="col-md-9">	
 
 <?php

@@ -8,13 +8,16 @@
                                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                                 <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                                 <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+								<li data-target="#carousel-example-generic" data-slide-to="3"></li>
+								<li data-target="#carousel-example-generic" data-slide-to="4"></li>
+
                             </ol>
                             <div class="carousel-inner">
                             <?php
                            	 	echo '<div class="item active">';
-                                  	echo $this->Html->image('bienvenidos.jpg', array('class'=>array('thumb','slide-image')));
+                                  	echo $this->Html->image('bienvenidos.jpg', array('class'=>array('slide-image')));
                                 echo "</div>"; 
-                        		for ($i=0; $i<=5; $i++) {
+                        		for ($i=0; $i<=3; $i++) {
 									 echo  '<div class="item">';
 									 echo $this->Html->image($productos[$i]['Product']['image'], array('class'=>'slide-image'));
                                		echo '</div>';
@@ -52,13 +55,13 @@
 		                            
 		                            echo '
 		                            <div class="ratings">
-		                                <p class="pull-right">100 reviews</p>
-		                                <p>
+		                                <!--<p class="pull-right">100 reviews</p>-->
+		                               <p>
+		                               <!-- <span class="glyphicon glyphicon-star"></span>
 		                                    <span class="glyphicon glyphicon-star"></span>
 		                                    <span class="glyphicon glyphicon-star"></span>
 		                                    <span class="glyphicon glyphicon-star"></span>
-		                                    <span class="glyphicon glyphicon-star"></span>
-		                                    <span class="glyphicon glyphicon-star"></span>
+		                                    <span class="glyphicon glyphicon-star"></span>-->
 		                                </p>
 		                            </div>
 		                        </div>

@@ -7,7 +7,7 @@
 		echo $this->Form->input('lastname');
 		echo $this->Form->input('sexo',array(
    			 'options' => array('Hombre','Mujer'),
-   			 'empty' => 'Elige'
+   			 'empty' => '----'
 		));
 		echo $this->Form->input('email');
 		echo $this->Form->input('username');
