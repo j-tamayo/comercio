@@ -19,20 +19,16 @@
 		echo $this->Form->input('Ciudad');
 		echo $this->Form->input('zip');
 
+		echo '<label><h1> Datos De Envio</h1></label>';
+		echo '<label><h4> Costo adicional de envio: '.$costo.'</h4></label>';
+		echo '<label><h4> Fecha Entrega: '.$fecha.'</h4></label>';
+
 		echo '<label><h1> Datos De Tarjeta </h1></label>';
-		echo $this->Form->input('N&uacute;mero');
+		echo $this->Form->input('creditCard',array('label'=>'N&uacute;mero'));
 		echo $this->Form->input('cvc',array('type'=>'password'));
-		echo $this->Form->input('vencimiento');
+		echo $this->Form->input('vencimiento',array('label'=>'vencimiento'));
 
-		echo '<label><h2> Total a Pagar: </h2> 
-		<h3><div id="priceP">
-			<p>Juegos     Bs '.$valor.' </p>
-			<p  style="margin-left:5px"></p>
-			<span class="glyphicon glyphicon-plus"></span>
-		
-		</h3></div> </label>';
-
-		
+		echo '<label><h2> Total a Pagar: </h2> <h3>Bs '.$valor.'</h3> </label>';
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

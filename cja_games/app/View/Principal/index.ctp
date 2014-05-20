@@ -50,7 +50,7 @@
 									echo '
 		                            </div>';
 		                             if($this->Session->check('Auth.User')){
-									  echo $this->Html->link('Buy', array('controller' => 'ProductsUsers', 'action' => 'buy',$productos[$i]['Product']['id']));
+									  echo $this->Html->link('Buy', array('controller' => 'ProductsUsers', 'action' => 'dispatch',$productos[$i]['Product']['id']));
 									  } 
 		                            
 		                            echo '

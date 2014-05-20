@@ -23,5 +23,4 @@ function cargar(evt){
 
   function price(evt,price){
      document.getElementById('priceP').innerHTML='$'+evt.target.value*price;
-     document.getElementById('priceP1').innerHTML='$'+evt.target.value*price;
   }
