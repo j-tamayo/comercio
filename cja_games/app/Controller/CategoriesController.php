@@ -47,6 +47,14 @@ class CategoriesController extends AppController {
 	}
 	
 	public function user_view($id = null) {
+		$this->loadModel('Product');
+
+		$products = $this->Product->find('all', array(
+        	'conditions' => array('Product.category_id' => $id),
+    	));
+		/*print_r($products);die;*/
+
+		$this->set('products', $products);
 		$this->render('user_view', 'layout1');
 	
 	}
