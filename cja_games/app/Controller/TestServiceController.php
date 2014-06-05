@@ -17,6 +17,24 @@ class TestServiceController extends AppController {
     
    
     public function dispatch (){
+        $link = 'http://192.168.0.102/rest/resources/users.json';
+        $data = array(
+            'id'        => 3,
+            'address'   => 'calle las palmas 3',
+            'company'   => 'Polar',
+            'email'     => 'jtamayo@gmail.com',
+            'gender'    => 'Masculino',
+            'name'      => 'Junior',
+            'phone'     => '219-53-74',
+            'status'    => 'Active'
+        );
+        $httpSocket = new HttpSocket();
+        $response = $httpSocket->post($link, $data );
+
+        $aux = json_decode($response['body']);
+        //echo '<pre>';
+        print_r($response['body']);die;
+
         $this->loadModel('Product');
          
         //$xml = Xml::build('http://bakery.cakephp.org/articles.rss', array('return' => 'simplexml'));
