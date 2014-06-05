@@ -16,7 +16,7 @@ class Cart extends AppModel {
  *
  * @var array
  */
-	public $hasMany = array(
+	public $hasOne = array(
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'cart_id',

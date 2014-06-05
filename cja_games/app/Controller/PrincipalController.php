@@ -1,4 +1,5 @@
 <?php
+App::uses('AppController', 'Controller');
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -8,7 +9,11 @@
 class PrincipalController extends AppController{
  	
 	public function index(){
-		$this->set('name', 'adr');
+		$this->layout = 'layout1';
+		Controller::loadModel('Product');
+		$productos=$this->Product->find('all',array('limit' => 7));
+		$this->set('productos',$productos);
+		
 	}
 }
 

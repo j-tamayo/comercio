@@ -1,20 +1,22 @@
 <div class="products form">
-<?php echo $this->Form->create('Product'); ?>
+<?php echo $this->Form->create('Product',array('type'=>'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Product'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('description');
 		echo $this->Form->input('enabled');
-		echo $this->Form->input('image');
 		echo $this->Form->input('in_stock');
 		echo $this->Form->input('name');
 		echo $this->Form->input('price');
 		echo $this->Form->input('category_id');
-		echo $this->Form->input('Cart');
-		echo $this->Form->input('Promotion');
-		echo $this->Form->input('User');
 	?>
+	<div class="input" id="vacio" style='visibility:visible;'>
+		<label>Imagen</label>
+		<?php
+			echo $this->Html->image($img, array('id'=>'img'));
+		?>
+	</div>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>

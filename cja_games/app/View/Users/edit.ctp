@@ -5,7 +5,7 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
-		echo $this->Form->input('apellido');
+		echo $this->Form->input('lastname');
 		echo $this->Form->input('sexo');
 		echo $this->Form->input('email');
 		echo $this->Form->input('username');
@@ -16,7 +16,7 @@
 		echo $this->Form->input('activate');
 		echo $this->Form->input('city_id');
 		echo $this->Form->input('cart_id');
-		echo $this->Form->input('Product');
+		echo $this->Form->input('img_perfil');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -20,9 +20,15 @@ class CategoriesController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function index($flag = true) {
+	
+		if(!$flag){
 		$this->Category->recursive = 0;
 		$this->set('categories', $this->Paginator->paginate());
+		}else{
+		$this->set('categories', $this->Paginator->paginate());
+		$this->render('user_view', 'layout1');
+		}
 	}
 
 /**
@@ -38,6 +44,11 @@ class CategoriesController extends AppController {
 		}
 		$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
 		$this->set('category', $this->Category->find('first', $options));
+	}
+	
+	public function user_view($id = null) {
+		$this->render('user_view', 'layout1');
+	
 	}
 
 /**
@@ -78,7 +89,6 @@ class CategoriesController extends AppController {
 		$folder1 = new Folder(WWW_ROOT . 'img/Games_Categories/'.$nameE);
 		if ($folder1->delete()) return 1;
 		else return 0;
-
 	}
 
 /**
@@ -94,7 +104,8 @@ class CategoriesController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Category->save($this->request->data)) {
-				$this->editFile($name,$this->request->data['Category']['name']);
+				if($name!=$this->request->data['Category']['name'])
+					$this->editFile($name,$this->request->data['Category']['name']);
 				$this->Session->setFlash(__('The category has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -118,10 +129,11 @@ class CategoriesController extends AppController {
 		if (!$this->Category->exists()) {
 			throw new NotFoundException(__('Invalid category'));
 		}
-		$this->deleteC($name);
+
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Category->delete()) {
 			$this->Session->setFlash(__('The category has been deleted.'));
+			$this->deleteC($name);
 		} else {
 			$this->Session->setFlash(__('The category could not be deleted. Please, try again.'));
 		}
